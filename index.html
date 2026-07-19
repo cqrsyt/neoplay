@@ -26,7 +26,6 @@
             <button onclick="showQuiz()">开始推荐之旅</button>
         </section>
         
-        <!-- Quiz Section -->
         <section id="quiz" class="section hidden">
             <h2>游戏推荐问答</h2>
             <div id="quiz-questions"></div>
@@ -34,14 +33,12 @@
             <div id="recommendation"></div>
         </section>
         
-        <!-- Games Section -->
         <section id="games-list" class="section hidden">
             <h2>经典棋类游戏</h2>
             <div class="game-grid"></div>
         </section>
     </main>
     
-    <!-- AI Chat -->
     <div id="ai-assistant" class="ai-chat hidden">
         <div class="chat-header">AI游戏导师</div>
         <div id="chat-messages"></div>
@@ -49,19 +46,16 @@
         <button onclick="sendMessage()">发送</button>
     </div>
     
-    <!-- 教程模态框 -->
     <div id="game-modal" class="modal hidden">
         <div class="modal-content">
-            <span onclick="closeModal()" style="float:right; cursor:pointer; font-size:2.5rem; color:#ff00aa;">×</span>
+            <span onclick="closeModal()" style="float:right; cursor:pointer; font-size:2.5rem;">×</span>
             <h2 id="modal-title"></h2>
             <div id="modal-content"></div>
-            <canvas id="game-canvas" width="480" height="480" style="background:#111; border:2px solid #00ffcc; margin:20px auto; display:block;"></canvas>
-            <button onclick="startSimpleGame()" style="margin-top:20px; padding:15px 40px; font-size:1.1rem;">🎮 开始真实游玩</button>
         </div>
     </div>
     
     <footer>
-        <p>快捷键: Q - 推荐, G - 游戏列表, A - AI助手, Esc - 关闭</p>
+        <p>快捷键: Q - 推荐, G - 游戏, A - AI, Esc - 关闭</p>
     </footer>
 </body>
 </html>
