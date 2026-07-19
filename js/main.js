@@ -7,15 +7,23 @@ let currentQuestions = [
 ];
 
 function showQuiz() {
+    userAnswers = [];
     document.getElementById('quiz').classList.remove('hidden');
     document.getElementById('games-list').classList.add('hidden');
     document.getElementById('hero').style.display = 'none';
     
+    const questions = [
+        { q: "你喜欢策略深度高的游戏吗？", options: ["非常喜欢", "一般", "不喜欢"] },
+        { q: "偏好多人社交还是单人思考？", options: ["多人", "单人"] },
+        { q: "喜欢传统棋类还是快速卡牌/竞速？", options: ["传统棋类", "快速娱乐"] },
+        { q: "你有耐心慢慢思考吗？", options: ["有", "一般"] }
+    ];
+    
     let qHTML = '';
-    currentQuestions.forEach((q, i) => {
-        qHTML += `<div style="margin:15px 0"><p>${q.q}</p>`;
+    questions.forEach((q, i) => {
+        qHTML += `<div style="margin:20px 0"><p><strong>${q.q}</strong></p>`;
         q.options.forEach(opt => {
-            qHTML += `<button onclick="answerQ(${i}, '${opt}')" style="margin:5px; padding:8px 16px;">${opt}</button>`;
+            qHTML += `<button onclick="recordAnswer(${i}, '${opt}')" style="margin:5px; padding:10px 20px; font-size:1.1rem;">${opt}</button>`;
         });
         qHTML += `</div>`;
     });
@@ -25,11 +33,27 @@ function showQuiz() {
 function answerQ(i, ans) {
     console.log(`Answered Q${i}: ${ans}`);
 }
+let userAnswers = [];
 
-function submitQuiz() {
-    document.getElementById('recommendation').innerHTML = `<h3>推荐游戏</h3><p>围棋、中国象棋、狼人杀 - 这些策略与社交游戏最适合您！</p>`;
+function recordAnswer(qIndex, answer) {
+    userAnswers[qIndex] = answer;
+    console.log(`Q${qIndex}: ${answer}`);
 }
-
+function submitQuiz() {
+    let recommendation = "根据您的回答，推荐：";
+    
+    if (userAnswers[0] === "非常喜欢" && userAnswers[2] === "传统棋类") {
+        recommendation += "围棋、中国象棋（深度策略）";
+    } else if (userAnswers[1] === "多人") {
+        recommendation += "狼人杀（社交推理）";
+    } else {
+        recommendation += "国际象棋、跳棋（平衡型）";
+    }
+    
+    recommendation += "<p>点击游戏卡片开始体验，AI导师随时为您解答！</p>";
+    
+    document.getElementById('recommendation').innerHTML = `<h3>${recommendation}</h3>`;
+}
 function showGames() {
     document.getElementById('games-list').classList.remove('hidden');
     document.getElementById('quiz').classList.add('hidden');
