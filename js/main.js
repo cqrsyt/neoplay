@@ -1,4 +1,4 @@
-// Main JS for NeoPlay - Updated with rule links
+// Main JS for NeoPlay - 完整优化版
 
 let currentQuestions = [
     { q: "你喜欢策略深度高的游戏吗？", options: ["是", "否"] },
@@ -6,9 +6,29 @@ let currentQuestions = [
     { q: "喜欢传统棋类还是卡牌？", options: ["棋类", "其他"] }
 ];
 
-function showQuiz() { /* ... 保持不变 */ }
+function showQuiz() {
+    document.getElementById('quiz').classList.remove('hidden');
+    document.getElementById('games-list').classList.add('hidden');
+    document.getElementById('hero').style.display = 'none';
+    
+    let qHTML = '';
+    currentQuestions.forEach((q, i) => {
+        qHTML += `<div style="margin:15px 0"><p>${q.q}</p>`;
+        q.options.forEach(opt => {
+            qHTML += `<button onclick="answerQ(${i}, '${opt}')" style="margin:5px; padding:8px 16px;">${opt}</button>`;
+        });
+        qHTML += `</div>`;
+    });
+    document.getElementById('quiz-questions').innerHTML = qHTML;
+}
 
-function submitQuiz() { /* ... */ }
+function answerQ(i, ans) {
+    console.log(`Answered Q${i}: ${ans}`);
+}
+
+function submitQuiz() {
+    document.getElementById('recommendation').innerHTML = `<h3>推荐游戏</h3><p>围棋、中国象棋、狼人杀 - 这些策略与社交游戏最适合您！</p>`;
+}
 
 function showGames() {
     document.getElementById('games-list').classList.remove('hidden');
@@ -33,18 +53,45 @@ function showGames() {
             <h3>${game.name}</h3>
             <p>${game.desc}</p>
             <button onclick="playGame('${game.name}')">开始游戏</button>
-            <a href="${game.link}" target="_blank" style="color:#00ffcc; display:block; margin-top:10px; text-decoration:none;">📖 查看详细规则</a>
+            <a href="${game.link}" target="_blank" style="color:#00ffcc; display:block; margin-top:12px;">📖 详细规则</a>
         `;
         grid.appendChild(card);
     });
 }
 
 function playGame(gameName) {
-    alert(`进入 ${gameName} 游戏界面！（演示版）`);
+    alert(`欢迎进入 ${gameName}！\n\n当前为演示版，AI助手可提供教学。`);
 }
 
-function showAI() { /* ... */ }
+function showAI() {
+    document.getElementById('ai-assistant').classList.toggle('hidden');
+}
 
-function sendMessage() { /* ... */ }
+function sendMessage() {
+    const input = document.getElementById('chat-input');
+    const msg = input.value.trim();
+    if (!msg) return;
+    
+    const messages = document.getElementById('chat-messages');
+    messages.innerHTML += `<p><strong>你:</strong> ${msg}</p>`;
+    input.value = '';
+    
+    setTimeout(() => {
+        let resp = '在策略游戏中，耐心和布局很重要！';
+        if (msg.includes('规则') || msg.includes('怎么玩')) resp = '点击游戏卡片上的规则链接查看详细说明。';
+        messages.innerHTML += `<p><strong>AI导师:</strong> ${resp}</p>`;
+        messages.scrollTop = messages.scrollHeight;
+    }, 600);
+}
 
-// 快捷键保持不变
+// 快捷键
+document.addEventListener('keydown', e => {
+    if (e.key.toLowerCase() === 'q') showQuiz();
+    if (e.key.toLowerCase() === 'g') showGames();
+    if (e.key.toLowerCase() === 'a') showAI();
+    if (e.key === 'Escape') {
+        document.getElementById('hero').style.display = 'flex';
+        document.querySelectorAll('.section').forEach(s => s.classList.add('hidden'));
+        document.getElementById('ai-assistant').classList.add('hidden');
+    }
+});
