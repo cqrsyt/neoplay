@@ -141,3 +141,60 @@ document.addEventListener('keydown', e => {
         document.getElementById('ai-assistant').classList.add('hidden');
     }
 });
+let canvas, ctx;
+let board = Array(8).fill().map(() => Array(8).fill(0)); // 0空, 1红, 2黑
+
+function startSimpleGame() {
+    const modalContent = document.getElementById('modal-content');
+    modalContent.innerHTML = `
+        <canvas id="game-canvas" width="480" height="480" style="background:#111; border:3px solid #00ffcc; margin:20px auto; display:block;"></canvas>
+        <p>红色先手，点击棋子移动（简单版跳棋）</p>
+    `;
+    
+    canvas = document.getElementById('game-canvas');
+    ctx = canvas.getContext('2d');
+    
+    initBoard();
+    drawBoard();
+    canvas.addEventListener('click', handleClick);
+}
+
+function initBoard() {
+    for (let i = 0; i < 8; i++) {
+        for (let j = 0; j < 8; j++) {
+            if ((i + j) % 2 === 1) {
+                if (i < 3) board[i][j] = 1; // 红
+                if (i > 4) board[i][j] = 2; // 黑
+            }
+        }
+    }
+}
+
+function drawBoard() {
+    ctx.clearRect(0, 0, 480, 480);
+    for (let i = 0; i < 8; i++) {
+        for (let j = 0; j < 8; j++) {
+            ctx.fillStyle = (i + j) % 2 === 0 ? '#222' : '#555';
+            ctx.fillRect(j*60, i*60, 60, 60);
+            
+            if (board[i][j] === 1) {
+                ctx.fillStyle = '#ff4444';
+                ctx.beginPath();
+                ctx.arc(j*60 + 30, i*60 + 30, 22, 0, Math.PI*2);
+                ctx.fill();
+            } else if (board[i][j] === 2) {
+                ctx.fillStyle = '#4444ff';
+                ctx.beginPath();
+                ctx.arc(j*60 + 30, i*60 + 30, 22, 0, Math.PI*2);
+                ctx.fill();
+            }
+        }
+    }
+}
+
+function handleClick(e) {
+    const rect = canvas.getBoundingClientRect();
+    const x = Math.floor((e.clientX - rect.left) / 60);
+    const y = Math.floor((e.clientY - rect.top) / 60);
+    alert(`点击位置: (${x}, ${y}) - 简单版，移动逻辑开发中`);
+}
