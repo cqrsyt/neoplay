@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NeoPlay - 未来游戏宇宙</title>
+    <link rel="stylesheet" href="css/style.css">
+    <script src="js/main.js" defer></script>
+</head>
+<body>
+    <header>
+        <nav>
+            <div class="logo">NEO<span>PLAY</span></div>
+            <ul>
+                <li onclick="showQuiz()">推荐游戏</li>
+                <li onclick="showGames()">所有游戏</li>
+                <li onclick="showAI()">AI助手</li>
+            </ul>
+        </nav>
+    </header>
+    
+    <main>
+        <section id="hero" class="hero">
+            <h1>探索无限游戏世界</h1>
+            <p>科技感十足的策略与乐趣</p>
+            <button onclick="showQuiz()">开始推荐之旅</button>
+        </section>
+        
+        <!-- Quiz Section -->
+        <section id="quiz" class="section hidden">
+            <h2>游戏推荐问答</h2>
+            <div id="quiz-questions"></div>
+            <button onclick="submitQuiz()">提交获取推荐</button>
+            <div id="recommendation"></div>
+        </section>
+        
+        <!-- Games Section -->
+        <section id="games-list" class="section hidden">
+            <h2>经典棋类游戏</h2>
+            <div class="game-grid">
+                <!-- Games will be populated by JS -->
+            </div>
+        </section>
+    </main>
+    
+    <!-- AI Chat -->
+    <div id="ai-assistant" class="ai-chat hidden">
+        <div class="chat-header">AI游戏导师</div>
+        <div id="chat-messages"></div>
+        <input type="text" id="chat-input" placeholder="问我游戏规则或策略...">
+        <button onclick="sendMessage()">发送</button>
+    </div>
+    
+    <footer>
+        <p>快捷键: Q - 问答, G - 游戏, A - AI助手, Esc - 关闭</p>
+    </footer>
+</body>
+</html>
