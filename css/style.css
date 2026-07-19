@@ -1,33 +1,27 @@
 body {
     margin: 0;
     font-family: 'Arial', sans-serif;
-    background: linear-gradient(135deg, #0a0a2e, #1a0033);
+    background: linear-gradient(135deg, #0a0a2e, #1a0033, #000);
     color: #00ffcc;
     overflow-x: hidden;
+    min-height: 100vh;
 }
 
 header {
-    background: rgba(0, 0, 0, 0.8);
-    padding: 1rem;
+    background: rgba(0, 0, 0, 0.9);
+    padding: 1rem 5%;
     position: fixed;
     width: 100%;
     z-index: 100;
     border-bottom: 2px solid #00ffcc;
-}
-
-nav {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    max-width: 1200px;
-    margin: 0 auto;
+    backdrop-filter: blur(10px);
 }
 
 .logo {
-    font-size: 2rem;
+    font-size: 2.2rem;
     font-weight: bold;
-    letter-spacing: 3px;
-    text-shadow: 0 0 10px #00ffcc;
+    letter-spacing: 4px;
+    text-shadow: 0 0 15px #00ffcc;
 }
 
 .logo span {
@@ -37,17 +31,19 @@ nav {
 ul {
     list-style: none;
     display: flex;
-    gap: 2rem;
+    gap: 2.5rem;
+    font-size: 1.1rem;
 }
 
 li {
     cursor: pointer;
-    transition: all 0.3s;
+    transition: all 0.3s ease;
 }
 
 li:hover {
     color: #ff00aa;
-    text-shadow: 0 0 15px #ff00aa;
+    text-shadow: 0 0 20px #ff00aa;
+    transform: translateY(-2px);
 }
 
 .hero {
@@ -57,75 +53,57 @@ li:hover {
     justify-content: center;
     align-items: center;
     text-align: center;
-    background: url('https://picsum.photos/1920/1080?random=1') no-repeat center/cover;
+    background: linear-gradient(rgba(10,10,46,0.8), rgba(26,0,51,0.8)), url('https://picsum.photos/1920/1080?random=42') center/cover;
     position: relative;
 }
 
-.hero::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(10, 10, 46, 0.7);
-}
-
 h1 {
-    font-size: 4rem;
-    text-shadow: 0 0 20px #00ffcc;
-    animation: glow 2s infinite alternate;
+    font-size: 4.5rem;
+    text-shadow: 0 0 30px #00ffcc;
+    animation: glow 3s infinite alternate;
 }
 
 .section {
-    padding: 4rem 10%;
+    padding: 6rem 10%;
     max-width: 1400px;
     margin: 0 auto;
 }
 
-.hidden {
-    display: none;
-}
-
 .game-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
     gap: 2rem;
 }
 
 .game-card {
-    background: rgba(255,255,255,0.05);
-    border: 1px solid #00ffcc;
-    padding: 1.5rem;
-    border-radius: 15px;
-    transition: transform 0.3s;
-    cursor: pointer;
+    background: rgba(255,255,255,0.08);
+    border: 2px solid #00ffcc;
+    padding: 2rem;
+    border-radius: 20px;
+    transition: all 0.4s ease;
+    backdrop-filter: blur(10px);
 }
 
 .game-card:hover {
-    transform: scale(1.05);
-    box-shadow: 0 0 30px #00ffcc;
+    transform: translateY(-15px) scale(1.03);
+    box-shadow: 0 0 40px rgba(0, 255, 204, 0.6);
+    border-color: #ff00aa;
 }
 
 .ai-chat {
     position: fixed;
-    bottom: 20px;
-    right: 20px;
-    width: 350px;
-    background: rgba(0,0,0,0.9);
+    bottom: 30px;
+    right: 30px;
+    width: 380px;
+    background: rgba(0,0,0,0.95);
     border: 2px solid #00ffcc;
-    border-radius: 15px;
-    padding: 1rem;
+    border-radius: 20px;
+    padding: 1.5rem;
     z-index: 1000;
-}
-
-#chat-messages {
-    height: 300px;
-    overflow-y: auto;
-    margin-bottom: 1rem;
+    box-shadow: 0 0 30px #00ffcc;
 }
 
 @keyframes glow {
-    from { text-shadow: 0 0 10px #00ffcc; }
-    to { text-shadow: 0 0 30px #ff00aa; }
+    from { text-shadow: 0 0 20px #00ffcc; }
+    to { text-shadow: 0 0 40px #ff00aa, 0 0 60px #ff00aa; }
 }
