@@ -84,7 +84,29 @@ function showGames() {
 }
 
 function playGame(gameName) {
-    alert(`欢迎进入 ${gameName}！\n\n当前为演示版，AI助手可提供教学。`);
+    const modal = document.getElementById('game-modal');
+    const title = document.getElementById('modal-title');
+    const content = document.getElementById('modal-content');
+    
+    title.textContent = gameName + " - 详细教程与游玩";
+    
+    content.innerHTML = `
+        <h3>规则概述</h3>
+        <p>点击上方规则链接或这里查看详细说明。</p>
+        <p>本界面支持真实游玩（Canvas棋盘开发中）。</p>
+        <button onclick="startSimpleGame('${gameName}')" style="padding:15px 30px; font-size:1.1rem;">立即开始对战</button>
+    `;
+    
+    modal.style.display = 'flex';
+}
+
+function closeModal() {
+    document.getElementById('game-modal').style.display = 'none';
+}
+
+function startSimpleGame(gameName) {
+    alert(`正在启动 ${gameName} 真实对战模式！\n\n（简单版Canvas棋盘，未来会完善完整AI对战）`);
+    closeModal();
 }
 
 function showAI() {
