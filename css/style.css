@@ -1,20 +1,26 @@
 body {
     margin: 0;
     font-family: 'Arial', sans-serif;
-    background: linear-gradient(135deg, #0a0a2e, #1a0033, #000);
+    background: linear-gradient(135deg, #0a0a2e, #1a0033);
     color: #00ffcc;
     overflow-x: hidden;
-    min-height: 100vh;
 }
 
 header {
     background: rgba(0, 0, 0, 0.9);
-    padding: 1rem 5%;
+    padding: 1rem;
     position: fixed;
     width: 100%;
     z-index: 100;
     border-bottom: 2px solid #00ffcc;
-    backdrop-filter: blur(10px);
+}
+
+nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 1200px;
+    margin: 0 auto;
 }
 
 .logo {
@@ -32,18 +38,16 @@ ul {
     list-style: none;
     display: flex;
     gap: 2.5rem;
-    font-size: 1.1rem;
 }
 
 li {
     cursor: pointer;
-    transition: all 0.3s ease;
+    transition: all 0.3s;
 }
 
 li:hover {
     color: #ff00aa;
     text-shadow: 0 0 20px #ff00aa;
-    transform: translateY(-2px);
 }
 
 .hero {
@@ -53,18 +57,17 @@ li:hover {
     justify-content: center;
     align-items: center;
     text-align: center;
-    background: linear-gradient(rgba(10,10,46,0.8), rgba(26,0,51,0.8)), url('https://picsum.photos/1920/1080?random=42') center/cover;
-    position: relative;
+    background: linear-gradient(rgba(10,10,46,0.8), rgba(26,0,51,0.8)), url('https://picsum.photos/1920/1080?random=1') center/cover;
 }
 
 h1 {
     font-size: 4.5rem;
     text-shadow: 0 0 30px #00ffcc;
-    animation: glow 3s infinite alternate;
+    animation: glow 2s infinite alternate;
 }
 
 .section {
-    padding: 6rem 10%;
+    padding: 5rem 10%;
     max-width: 1400px;
     margin: 0 auto;
 }
@@ -80,14 +83,12 @@ h1 {
     border: 2px solid #00ffcc;
     padding: 2rem;
     border-radius: 20px;
-    transition: all 0.4s ease;
-    backdrop-filter: blur(10px);
+    transition: all 0.4s;
 }
 
 .game-card:hover {
-    transform: translateY(-15px) scale(1.03);
-    box-shadow: 0 0 40px rgba(0, 255, 204, 0.6);
-    border-color: #ff00aa;
+    transform: scale(1.05);
+    box-shadow: 0 0 40px #00ffcc;
 }
 
 .ai-chat {
@@ -100,13 +101,8 @@ h1 {
     border-radius: 20px;
     padding: 1.5rem;
     z-index: 1000;
-    box-shadow: 0 0 30px #00ffcc;
 }
 
-@keyframes glow {
-    from { text-shadow: 0 0 20px #00ffcc; }
-    to { text-shadow: 0 0 40px #ff00aa, 0 0 60px #ff00aa; }
-}
 .modal {
     position: fixed;
     top: 0;
@@ -127,7 +123,9 @@ h1 {
     max-width: 850px;
     width: 90%;
     border: 3px solid #00ffcc;
-    box-shadow: 0 0 50px #00ffcc;
-    max-height: 85vh;
-    overflow-y: auto;
+}
+
+@keyframes glow {
+    from { text-shadow: 0 0 20px #00ffcc; }
+    to { text-shadow: 0 0 50px #ff00aa; }
 }
